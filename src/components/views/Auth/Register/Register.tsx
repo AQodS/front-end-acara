@@ -23,7 +23,7 @@ const Register = () => {
           src="/images/general/logo.svg"
           alt="logo"
           width={180}
-          height={150}
+          height={180}
         />
         <Image
           src="/images/illustrations/login.svg"
