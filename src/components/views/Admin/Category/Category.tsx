@@ -8,28 +8,49 @@ import {
 } from "@nextui-org/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { Key, ReactNode, useCallback } from "react";
+import { Key, ReactNode, useCallback, useEffect } from "react";
 import { CiMenuKebab } from "react-icons/ci";
 import { COLUMN_LISTS_CATEGORY } from "./Category.constants";
-import { LIMIT_LISTS } from "@/constants/list.constants";
+import useCategory from "./useCategory";
+import InputFile from "@/components/ui/InputFile";
 
 const Category = () => {
-  const { push } = useRouter();
+  const { push, isReady, query } = useRouter();
+  const {
+    dataCategory,
+    isLoadingCategory,
+    isRefetchingCategory,
+
+    currentLimit,
+    currentPage,
+    handleChangeLimit,
+    handleChangePage,
+    handleClearSearch,
+    handleSearch,
+    setURL,
+  } = useCategory();
+
+  useEffect(() => {
+    if (isReady) {
+      setURL();
+    }
+  }, [isReady]);
+
   const renderCell = useCallback(
     (category: Record<string, unknown>, columnKey: Key) => {
       const cellValue = category[columnKey as keyof typeof category];
 
       switch (columnKey) {
-        case "icon":
-          return (
-            <Image
-              src={`${cellValue}`}
-              alt="icon"
-              width={100}
-              height={200}
-              className=""
-            />
-          );
+        // case "icon":
+        //   return (
+        //     <Image
+        //       src={`${cellValue}`}
+        //       alt="icon"
+        //       width={100}
+        //       height={200}
+        //       className=""
+        //     />
+        //   );
         case "actions":
           return (
             <Dropdown>
@@ -60,28 +81,26 @@ const Category = () => {
 
   return (
     <section>
-      <DataTable
-        buttonTopContentLabel="Create Category"
-        columns={COLUMN_LISTS_CATEGORY}
-        currentPage={1}
-        data={[
-          {
-            _id: "123",
-            name: "Category 1",
-            description: "Description 1",
-            icon: "/images/general/logo.png",
-          },
-        ]}
-        emptyContent="Category is empty"
-        limit={LIMIT_LISTS[0].label}
-        onChangeLimit={() => {}}
-        onChangePage={() => {}}
-        onChangeSearch={() => {}}
-        onClearSearch={() => {}}
-        onClickButtonTopContent={() => {}}
-        renderCell={renderCell}
-        totalPage={2}
-      />
+      {Object.keys(query).length > 0 && (
+        <DataTable
+          buttonTopContentLabel="Create Category"
+          columns={COLUMN_LISTS_CATEGORY}
+          currentPage={Number(currentPage)}
+          data={dataCategory?.data || []}
+          emptyContent="Category is empty"
+          isLoading={isLoadingCategory || isRefetchingCategory}
+          limit={String(currentLimit)}
+          onChangeLimit={handleChangeLimit}
+          onChangePage={handleChangePage}
+          onChangeSearch={handleSearch}
+          onClearSearch={handleClearSearch}
+          onClickButtonTopContent={() => {}}
+          renderCell={renderCell}
+          totalPage={dataCategory?.pagination.totalPages}
+        />
+      )}
+
+      <InputFile isDropable name="input" />
     </section>
   );
 };
