@@ -15,6 +15,7 @@ import { COLUMN_LISTS_CATEGORY } from "./Category.constants";
 import useCategory from "./useCategory";
 import InputFile from "@/components/ui/InputFile";
 import AddCategoryModal from "./AddCategoryModal";
+import DeleteCategoryModal from "./DeleteCategoryModal";
 
 const Category = () => {
   const { push, isReady, query } = useRouter();
@@ -31,9 +32,13 @@ const Category = () => {
     handleChangePage,
     handleSearch,
     handleClearSearch,
+
+    selectedId,
+    setSelectedId,
   } = useCategory();
 
   const addCategoryModal = useDisclosure();
+  const deleteCategoryModal = useDisclosure();
 
   useEffect(() => {
     if (isReady) {
@@ -46,10 +51,10 @@ const Category = () => {
       const cellValue = category[columnKey as keyof typeof category];
 
       switch (columnKey) {
-        // case "icon":
-        //   return (
-        //     <Image src={`${cellValue}`} alt="icon" width={100} height={200} />
-        //   );
+        case "icon":
+          return (
+            <Image src={`${cellValue}`} alt="icon" width={100} height={200} />
+          );
         case "actions":
           return (
             <Dropdown>
@@ -65,7 +70,14 @@ const Category = () => {
                 >
                   Detail Category
                 </DropdownItem>
-                <DropdownItem key="delete-category" className="text-danger-500">
+                <DropdownItem
+                  className="text-danger-500"
+                  key="delete-category"
+                  onPress={() => {
+                    setSelectedId(`${category._id}`);
+                    deleteCategoryModal.onOpen();
+                  }}
+                >
                   Delete
                 </DropdownItem>
               </DropdownMenu>
@@ -100,6 +112,12 @@ const Category = () => {
       )}
       <AddCategoryModal
         {...addCategoryModal}
+        refetchCategory={refetchCategory}
+      />
+      <DeleteCategoryModal
+        {...deleteCategoryModal}
+        selectedId={selectedId}
+        setSelectedId={setSelectedId}
         refetchCategory={refetchCategory}
       />
     </section>
