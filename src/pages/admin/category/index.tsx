@@ -5,7 +5,7 @@ const AdminCategoryPage = () => {
   return (
     <DashboardLayout
       title="Category"
-      description="List of all categories, create new category, and manage existing categories"
+      description="List of all categories, create new category, and manage existing categories."
       type="admin"
     >
       <Category />

@@ -63,7 +63,7 @@ const AddCategoryModal = (props: PropTypes) => {
         <ModalContent className="m-4">
           <ModalHeader>Add Category</ModalHeader>
           <ModalBody>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2">
               <p className="text-sm font-bold">Information</p>
               <Controller
                 control={control}
@@ -72,6 +72,7 @@ const AddCategoryModal = (props: PropTypes) => {
                   <Input
                     {...field}
                     autoFocus
+                    className="mb-2"
                     errorMessage={errors.name?.message}
                     isInvalid={errors.name !== undefined}
                     label="Name"
@@ -86,6 +87,7 @@ const AddCategoryModal = (props: PropTypes) => {
                 render={({ field }) => (
                   <Textarea
                     {...field}
+                    className="mb-2"
                     errorMessage={errors.description?.message}
                     isInvalid={errors.description !== undefined}
                     label="Description"
