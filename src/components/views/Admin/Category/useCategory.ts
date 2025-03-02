@@ -38,9 +38,9 @@ const useCategory = () => {
     isRefetching: isRefetchingCategory,
     refetch: refetchCategory,
   } = useQuery({
-    queryKey: ["categories", currentLimit, currentPage, currentSearch],
+    queryKey: ["Category", currentPage, currentLimit, currentSearch],
     queryFn: () => getCategories(),
-    enabled: router.isReady && !!currentLimit && !!currentPage,
+    enabled: router.isReady && !!currentPage && !!currentLimit,
   });
 
   const handleChangePage = (page: number) => {
@@ -92,14 +92,14 @@ const useCategory = () => {
     isRefetchingCategory,
     refetchCategory,
 
-    currentLimit,
+    setURL,
     currentPage,
+    currentLimit,
     currentSearch,
     handleChangeLimit,
     handleChangePage,
-    handleClearSearch,
     handleSearch,
-    setURL,
+    handleClearSearch,
   };
 };
 

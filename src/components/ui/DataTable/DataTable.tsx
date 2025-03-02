@@ -31,7 +31,7 @@ interface PropTypes {
   onClearSearch: () => void;
   onClickButtonTopContent?: () => void;
   renderCell: (item: Record<string, unknown>, columnKey: Key) => ReactNode;
-  totalPage: number;
+  totalPages: number;
 }
 
 const DataTable = (props: PropTypes) => {
@@ -49,7 +49,7 @@ const DataTable = (props: PropTypes) => {
     onClearSearch,
     onClickButtonTopContent,
     renderCell,
-    totalPage,
+    totalPages,
   } = props;
 
   const TopContent = useMemo(() => {
@@ -95,20 +95,20 @@ const DataTable = (props: PropTypes) => {
             </SelectItem>
           ))}
         </Select>
-        {totalPage > 1 && (
+        {totalPages > 1 && (
           <Pagination
             isCompact
             showControls
             color="danger"
             page={currentPage}
-            total={totalPage}
+            total={totalPages}
             onChange={onChangePage}
             loop
           />
         )}
       </div>
     );
-  }, [limit, currentPage, totalPage, onChangeLimit, onChangePage]);
+  }, [limit, currentPage, totalPages, onChangeLimit, onChangePage]);
 
   return (
     <Table

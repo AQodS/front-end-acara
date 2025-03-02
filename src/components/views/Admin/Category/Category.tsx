@@ -26,11 +26,11 @@ const Category = () => {
 
     currentLimit,
     currentPage,
+    setURL,
     handleChangeLimit,
     handleChangePage,
-    handleClearSearch,
     handleSearch,
-    setURL,
+    handleClearSearch,
   } = useCategory();
 
   const addCategoryModal = useDisclosure();
@@ -48,13 +48,7 @@ const Category = () => {
       switch (columnKey) {
         // case "icon":
         //   return (
-        //     <Image
-        //       src={`${cellValue}`}
-        //       alt="icon"
-        //       width={100}
-        //       height={200}
-        //       className=""
-        //     />
+        //     <Image src={`${cellValue}`} alt="icon" width={100} height={200} />
         //   );
         case "actions":
           return (
@@ -101,7 +95,7 @@ const Category = () => {
           onClearSearch={handleClearSearch}
           onClickButtonTopContent={addCategoryModal.onOpen}
           renderCell={renderCell}
-          totalPage={dataCategory?.pagination.totalPages}
+          totalPages={dataCategory?.pagination.totalPages}
         />
       )}
       <AddCategoryModal
