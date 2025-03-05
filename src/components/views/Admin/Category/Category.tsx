@@ -16,6 +16,7 @@ import useCategory from "./useCategory";
 import InputFile from "@/components/ui/InputFile";
 import AddCategoryModal from "./AddCategoryModal";
 import DeleteCategoryModal from "./DeleteCategoryModal";
+import useChangeUrl from "@/hooks/useChangeUrl";
 
 const Category = () => {
   const { push, isReady, query } = useRouter();
@@ -25,24 +26,17 @@ const Category = () => {
     isRefetchingCategory,
     refetchCategory,
 
-    currentLimit,
-    currentPage,
-    setURL,
-    handleChangeLimit,
-    handleChangePage,
-    handleSearch,
-    handleClearSearch,
-
     selectedId,
     setSelectedId,
   } = useCategory();
 
   const addCategoryModal = useDisclosure();
   const deleteCategoryModal = useDisclosure();
+  const { setUrl } = useChangeUrl();
 
   useEffect(() => {
     if (isReady) {
-      setURL();
+      setUrl();
     }
   }, [isReady]);
 
@@ -96,15 +90,9 @@ const Category = () => {
         <DataTable
           buttonTopContentLabel="Create Category"
           columns={COLUMN_LISTS_CATEGORY}
-          currentPage={Number(currentPage)}
           data={dataCategory?.data || []}
           emptyContent="Category is empty"
           isLoading={isLoadingCategory || isRefetchingCategory}
-          limit={String(currentLimit)}
-          onChangeLimit={handleChangeLimit}
-          onChangePage={handleChangePage}
-          onChangeSearch={handleSearch}
-          onClearSearch={handleClearSearch}
           onClickButtonTopContent={addCategoryModal.onOpen}
           renderCell={renderCell}
           totalPages={dataCategory?.pagination.totalPages}

@@ -36,7 +36,7 @@ const DashboardLayoutSidebar = (props: PropTypes) => {
             alt="logo"
             width={180}
             height={60}
-            className="mb-6 w-32"
+            className="mb-6 w-32 cursor-pointer"
             onClick={() => router.push("/")}
           />
         </div>
