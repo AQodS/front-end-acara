@@ -40,7 +40,7 @@ const useDetailCategory = () => {
         message: error.message,
       });
     },
-    onSuccess: (result) => {
+    onSuccess: () => {
       refetchCategory();
       setToaster({
         type: "success",

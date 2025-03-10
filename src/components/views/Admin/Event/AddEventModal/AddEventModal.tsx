@@ -134,7 +134,6 @@ const AddEventModal = (props: PropTypes) => {
                   render={({ field }) => (
                     <DatePicker
                       {...field}
-                      defaultValue={now(getLocalTimeZone())}
                       errorMessage={errors.startDate?.message}
                       hideTimeZone
                       isInvalid={errors.startDate !== undefined}
@@ -150,7 +149,6 @@ const AddEventModal = (props: PropTypes) => {
                   render={({ field }) => (
                     <DatePicker
                       {...field}
-                      defaultValue={now(getLocalTimeZone())}
                       errorMessage={errors.endDate?.message}
                       hideTimeZone
                       isInvalid={errors.endDate !== undefined}

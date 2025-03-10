@@ -61,8 +61,8 @@ const InfoTab = (props: PropTypes) => {
               render={({ field }) => (
                 <Input
                   {...field}
-                  className="mt-2"
                   defaultValue={dataCategory?.name}
+                  className="mt-2"
                   errorMessage={errorsUpdateInfo.name?.message}
                   isInvalid={errorsUpdateInfo.name !== undefined}
                   label="Name"
@@ -73,7 +73,7 @@ const InfoTab = (props: PropTypes) => {
               )}
             />
           </Skeleton>
-          <Skeleton isLoaded={!!dataCategory?.name} className="rounded-lg">
+          <Skeleton isLoaded={!!dataCategory?.description} className="rounded-lg">
             <Controller
               control={controlUpdateInfo}
               name="description"

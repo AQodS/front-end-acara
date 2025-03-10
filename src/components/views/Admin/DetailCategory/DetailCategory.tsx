@@ -11,7 +11,7 @@ const DetailCategory = () => {
     isSuccessMutateUpdateCategory,
   } = useDetailCategory();
   return (
-    <Tabs>
+    <Tabs aria-label="Options">
       <Tab key="icon" title="Icon">
         <IconTab
           currentIcon={dataCategory?.icon}
