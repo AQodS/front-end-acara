@@ -31,7 +31,7 @@ const useDetailEvent = () => {
     isPending: isPendingMutateUpdateEvent,
     isSuccess: isSuccessMutateUpdateEvent,
   } = useMutation({
-    mutationFn: updateEvent,
+    mutationFn: (payload: IEvent) => updateEvent(payload),
     onError: (error) => {
       setToaster({
         type: "error",
@@ -60,7 +60,7 @@ const useDetailEvent = () => {
 
   const handleUpdateLocation = (data: IEventForm) => {
     const payload = {
-      isOnline: Boolean(data.isOnline),
+      isOnline: data.isOnline,
       location: {
         address: `${data.address}`,
         region: `${data.region}`,

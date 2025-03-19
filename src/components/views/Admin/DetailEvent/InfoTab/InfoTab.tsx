@@ -186,7 +186,6 @@ const InfoTab = (props: PropTypes) => {
                   errorMessage={errorsUpdateInfo.isPublish?.message}
                   isInvalid={errorsUpdateInfo.isPublish !== undefined}
                   label="Status"
-                  labelPlacement="outside"
                   variant="bordered"
                 >
                   <SelectItem key="true" value="true">
@@ -213,7 +212,6 @@ const InfoTab = (props: PropTypes) => {
                   errorMessage={errorsUpdateInfo.isFeatured?.message}
                   isInvalid={errorsUpdateInfo.isFeatured !== undefined}
                   label="Featured"
-                  labelPlacement="outside"
                   variant="bordered"
                 >
                   <SelectItem key="true" value="true">

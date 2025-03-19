@@ -33,7 +33,7 @@ const useDetailCategory = () => {
     isPending: isPendingMutateUpdateCategory,
     isSuccess: isSuccessMutateUpdateCategory,
   } = useMutation({
-    mutationFn: updateCategory,
+    mutationFn: (payload: ICategory) => updateCategory(payload),
     onError: (error) => {
       setToaster({
         type: "error",

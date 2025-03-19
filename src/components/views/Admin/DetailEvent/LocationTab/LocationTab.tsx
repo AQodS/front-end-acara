@@ -110,7 +110,9 @@ const LocationTab = (props: PropTypes) => {
                 <Select
                   {...field}
                   disallowEmptySelection
-                  defaultSelectedKeys={[dataEvent?.isOnline ? "true" : "false"]}
+                  defaultSelectedKeys={[
+                    dataEvent?.isOnline ? "true" : "false",
+                  ]}
                   errorMessage={errorsUpdateLocation.isOnline?.message}
                   isInvalid={errorsUpdateLocation.isOnline !== undefined}
                   label="Online / Offline"
