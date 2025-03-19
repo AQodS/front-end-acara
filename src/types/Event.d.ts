@@ -12,11 +12,12 @@ interface IEvent {
   category?: string;
   startDate?: string;
   endDate?: string;
-  isPublished?: boolean | string;
+  isPublish?: boolean | string;
   isFeatured?: boolean | string;
   isOnline?: boolean | string;
   description?: string;
   location?: {
+    address: string;
     region: string;
     coordinates: number[];
   };
@@ -24,11 +25,12 @@ interface IEvent {
 }
 
 interface IEventForm extends IEvent {
-  region?: string;
   startDate?: DateValue;
   endDate?: DateValue;
+  address?: string;
   latitude?: string;
   longitude?: string;
+  region?: string;
 }
 
 export type { IRegency, IEvent, IEventForm };

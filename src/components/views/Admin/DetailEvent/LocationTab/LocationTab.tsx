@@ -5,20 +5,16 @@ import {
   Card,
   CardBody,
   CardHeader,
-  DatePicker,
   Input,
   Select,
   SelectItem,
   Skeleton,
   Spinner,
-  Textarea,
 } from "@nextui-org/react";
 import { IEventForm, IRegency } from "@/types/Event";
 import useLocationTab from "./useLocationTab";
 import { Controller } from "react-hook-form";
 import { useEffect } from "react";
-import { ICategory } from "@/types/Category";
-import { toInputDate } from "@/utils/date";
 
 interface PropTypes {
   dataEvent: IEventForm;
@@ -52,6 +48,7 @@ const LocationTab = (props: PropTypes) => {
 
   useEffect(() => {
     if (dataEvent) {
+      setValueUpdateLocation("address", `${dataEvent?.location?.address}`);
       setValueUpdateLocation("isOnline", `${dataEvent?.isOnline}`);
       setValueUpdateLocation("region", `${dataEvent?.location?.region}`);
       setValueUpdateLocation(
@@ -84,6 +81,27 @@ const LocationTab = (props: PropTypes) => {
           className="flex flex-col gap-4"
           onSubmit={handleSubmitUpdateLocation(onUpdate)}
         >
+          <Skeleton
+            isLoaded={!!dataEvent?.location?.address}
+            className="rounded-lg"
+          >
+            <Controller
+              control={controlUpdateLocation}
+              name="address"
+              render={({ field }) => (
+                <Input
+                  {...field}
+                  defaultValue={`${dataEvent?.location?.address}`}
+                  errorMessage={errorsUpdateLocation.address?.message}
+                  isInvalid={errorsUpdateLocation.address !== undefined}
+                  label="Address"
+                  labelPlacement="outside"
+                  type="text"
+                  variant="bordered"
+                />
+              )}
+            />
+          </Skeleton>
           <Skeleton isLoaded={!!dataEvent} className="rounded-lg">
             <Controller
               control={controlUpdateLocation}

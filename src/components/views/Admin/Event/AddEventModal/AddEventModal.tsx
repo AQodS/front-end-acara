@@ -20,7 +20,6 @@ import InputFile from "@/components/ui/InputFile";
 import { useEffect } from "react";
 import { ICategory } from "@/types/Category";
 import { IRegency } from "@/types/Event";
-import { getLocalTimeZone, now } from "@internationalized/date";
 
 interface PropTypes {
   isOpen: boolean;
@@ -160,13 +159,13 @@ const AddEventModal = (props: PropTypes) => {
                 />
                 <Controller
                   control={control}
-                  name="isPublished"
+                  name="isPublish"
                   render={({ field }) => (
                     <Select
                       {...field}
                       disallowEmptySelection
-                      errorMessage={errors.isPublished?.message}
-                      isInvalid={errors.isPublished !== undefined}
+                      errorMessage={errors.isPublish?.message}
+                      isInvalid={errors.isPublish !== undefined}
                       label="Status"
                       variant="bordered"
                     >
@@ -262,6 +261,19 @@ const AddEventModal = (props: PropTypes) => {
                         </AutocompleteItem>
                       )}
                     </Autocomplete>
+                  )}
+                />
+                <Controller
+                  control={control}
+                  name="address"
+                  render={({ field }) => (
+                    <Input
+                      {...field}
+                      errorMessage={errors.address?.message}
+                      isInvalid={errors.address !== undefined}
+                      label="Address"
+                      variant="bordered"
+                    />
                   )}
                 />
                 <Controller

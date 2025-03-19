@@ -1,4 +1,3 @@
-import { IEventForm } from "@/types/Event";
 import {
   Autocomplete,
   AutocompleteItem,
@@ -15,6 +14,7 @@ import {
   Textarea,
 } from "@nextui-org/react";
 import useInfoTab from "./useInfoTab";
+import { IEventForm } from "@/types/Event";
 import { Controller } from "react-hook-form";
 import { useEffect } from "react";
 import { ICategory } from "@/types/Category";
@@ -48,7 +48,7 @@ const InfoTab = (props: PropTypes) => {
       setValueUpdateInfo("category", `${dataEvent?.category}`);
       setValueUpdateInfo("startDate", toInputDate(`${dataEvent?.startDate}`));
       setValueUpdateInfo("endDate", toInputDate(`${dataEvent?.endDate}`));
-      setValueUpdateInfo("isPublished", `${dataEvent?.isPublished}`);
+      setValueUpdateInfo("isPublish", `${dataEvent?.isPublish}`);
       setValueUpdateInfo("isFeatured", `${dataEvent?.isFeatured}`);
     }
   }, [dataEvent]);
@@ -175,16 +175,16 @@ const InfoTab = (props: PropTypes) => {
           <Skeleton isLoaded={!!dataEvent} className="rounded-lg">
             <Controller
               control={controlUpdateInfo}
-              name="isPublished"
+              name="isPublish"
               render={({ field }) => (
                 <Select
                   {...field}
                   disallowEmptySelection
                   defaultSelectedKeys={[
-                    dataEvent?.isPublished ? "true" : "false",
+                    dataEvent?.isPublish ? "true" : "false",
                   ]}
-                  errorMessage={errorsUpdateInfo.isPublished?.message}
-                  isInvalid={errorsUpdateInfo.isPublished !== undefined}
+                  errorMessage={errorsUpdateInfo.isPublish?.message}
+                  isInvalid={errorsUpdateInfo.isPublish !== undefined}
                   label="Status"
                   labelPlacement="outside"
                   variant="bordered"
