@@ -14,6 +14,7 @@ import useTicketTab from "./useTicketTab";
 import AddTicketModal from "./AddTicketModal";
 import DeleteTicketModal from "./DeleteTicketModal";
 import { ITicket } from "@/types/Ticket";
+import UpdateTicketModal from "./UpdateTicketModal";
 
 const TicketTab = () => {
   const { dataTicket, refetchTicket, isPendingTicket, isRefetchingTicket } =
@@ -41,6 +42,7 @@ const TicketTab = () => {
                 deleteTicketModal.onOpen();
               }}
               onPressButtonDetail={() => {
+                setSelectedDataTicket(ticket as ITicket);
                 updateTicketModal.onOpen();
               }}
             />
@@ -82,6 +84,12 @@ const TicketTab = () => {
       <AddTicketModal {...addTicketModal} refetchTicket={refetchTicket} />
       <DeleteTicketModal
         {...deleteTicketModal}
+        selectedDataTicket={selectedDataTicket}
+        setSelectedDataTicket={setSelectedDataTicket}
+        refetchTicket={refetchTicket}
+      />
+      <UpdateTicketModal
+        {...updateTicketModal}
         selectedDataTicket={selectedDataTicket}
         setSelectedDataTicket={setSelectedDataTicket}
         refetchTicket={refetchTicket}
