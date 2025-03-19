@@ -1,5 +1,6 @@
 const endpoint = {
   AUTH: "/auth",
+  BANNERS: "/banners",
   CATEGORY: "/category",
   EVENTS: "/events",
   MEDIA: "/media",
