@@ -39,7 +39,7 @@ const Category = () => {
       switch (columnKey) {
         case "icon":
           return (
-            <Image src={`${cellValue}`} alt="icon" width={100} height={200} />
+            <Image className="rounded-lg" src={`${cellValue}`} alt="icon" width={100} height={200} />
           );
         case "actions":
           return (
