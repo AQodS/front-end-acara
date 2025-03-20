@@ -6,10 +6,11 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
+  Select,
+  SelectItem,
   Spinner,
-  Textarea,
 } from "@nextui-org/react";
-import useAddCategoryModal from "./useAddCategoryModal";
+import useAddBannerModal from "./useAddBannerModal";
 import { Controller } from "react-hook-form";
 import InputFile from "@/components/ui/InputFile";
 import { useEffect } from "react";
@@ -18,36 +19,36 @@ interface PropTypes {
   isOpen: boolean;
   onClose: () => void;
   onOpenChange: () => void;
-  refetchCategory: () => void;
+  refetchBanner: () => void;
 }
 
-const AddCategoryModal = (props: PropTypes) => {
-  const { isOpen, onClose, onOpenChange, refetchCategory } = props;
+const AddBannerModal = (props: PropTypes) => {
+  const { isOpen, onClose, onOpenChange, refetchBanner } = props;
   const {
     control,
     errors,
-    handleAddCategory,
+    handleAddBanner,
     handleSubmitForm,
-    isPendingMutateAddCategory,
-    isSuccessMutateAddCategory,
+    isPendingMutateAddBanner,
+    isSuccessMutateAddBanner,
 
-    handleDeleteIcon,
+    handleDeleteImage,
     handleOnClose,
-    handleUploadIcon,
+    handleUploadImage,
     isPendingMutateDeleteFile,
     isPendingMutateUploadFile,
     preview,
-  } = useAddCategoryModal();
+  } = useAddBannerModal();
 
   useEffect(() => {
-    if (isSuccessMutateAddCategory) {
+    if (isSuccessMutateAddBanner) {
       onClose();
-      refetchCategory();
+      refetchBanner();
     }
-  }, [isSuccessMutateAddCategory]);
+  }, [isSuccessMutateAddBanner]);
 
   const disabledSubmit =
-    isPendingMutateAddCategory ||
+    isPendingMutateAddBanner ||
     isPendingMutateDeleteFile ||
     isPendingMutateUploadFile;
 
@@ -59,23 +60,22 @@ const AddCategoryModal = (props: PropTypes) => {
       placement="center"
       scrollBehavior="inside"
     >
-      <form onSubmit={handleSubmitForm(handleAddCategory)}>
+      <form onSubmit={handleSubmitForm(handleAddBanner)}>
         <ModalContent className="m-4">
-          <ModalHeader>Add Category</ModalHeader>
+          <ModalHeader>Add Banner</ModalHeader>
           <ModalBody>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-4">
               <p className="text-sm font-bold">Information</p>
               <Controller
                 control={control}
-                name="name"
+                name="title"
                 render={({ field }) => (
                   <Input
                     {...field}
                     autoFocus
-                    className="mb-2"
-                    errorMessage={errors.name?.message}
-                    isInvalid={errors.name !== undefined}
-                    label="Name"
+                    errorMessage={errors.title?.message}
+                    isInvalid={errors.title !== undefined}
+                    label="Title"
                     type="text"
                     variant="bordered"
                   />
@@ -83,32 +83,39 @@ const AddCategoryModal = (props: PropTypes) => {
               />
               <Controller
                 control={control}
-                name="description"
+                name="isShow"
                 render={({ field }) => (
-                  <Textarea
+                  <Select
                     {...field}
-                    className="mb-2"
-                    errorMessage={errors.description?.message}
-                    isInvalid={errors.description !== undefined}
-                    label="Description"
+                    disallowEmptySelection
+                    errorMessage={errors.isShow?.message}
+                    isInvalid={errors.isShow !== undefined}
+                    label="Status"
                     variant="bordered"
-                  />
+                  >
+                    <SelectItem key="true" value="true">
+                      Show
+                    </SelectItem>
+                    <SelectItem key="false" value="false">
+                      Hide
+                    </SelectItem>
+                  </Select>
                 )}
               />
-              <p className="text-sm font-bold">Icon</p>
+              <p className="text-sm font-bold">Image</p>
               <Controller
                 control={control}
-                name="icon"
+                name="image"
                 render={({ field: { onChange, value, ...field } }) => (
                   <InputFile
                     {...field}
-                    errorMessage={errors.icon?.message}
+                    errorMessage={errors.image?.message}
                     isDeleting={isPendingMutateDeleteFile}
                     isDropable
-                    isInvalid={errors.icon !== undefined}
+                    isInvalid={errors.image !== undefined}
                     isUploading={isPendingMutateUploadFile}
-                    onDelete={() => handleDeleteIcon(onChange)}
-                    onUpload={(files) => handleUploadIcon(files, onChange)}
+                    onDelete={() => handleDeleteImage(onChange)}
+                    onUpload={(files) => handleUploadImage(files, onChange)}
                     preview={typeof preview === "string" ? preview : ""}
                   />
                 )}
@@ -125,10 +132,10 @@ const AddCategoryModal = (props: PropTypes) => {
               Cancel
             </Button>
             <Button color="danger" type="submit" disabled={disabledSubmit}>
-              {isPendingMutateAddCategory ? (
+              {isPendingMutateAddBanner ? (
                 <Spinner size="sm" color="white" />
               ) : (
-                "Create Category"
+                "Create Banner"
               )}
             </Button>
           </ModalFooter>
@@ -138,4 +145,4 @@ const AddCategoryModal = (props: PropTypes) => {
   );
 };
 
-export default AddCategoryModal;
+export default AddBannerModal;

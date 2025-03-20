@@ -4,11 +4,10 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { Key, ReactNode, useCallback, useEffect } from "react";
 import { COLUMN_LISTS_BANNER } from "./Banner.constants";
-// import AddCategoryModal from "./AddBannerModal";
-// import DeleteCategoryModal from "./DeleteBannerModal";
 import useChangeUrl from "@/hooks/useChangeUrl";
 import DropdownAction from "@/components/commons/DropdownAction";
 import useBanner from "./useBanner";
+import AddBannerModal from "./AddBannerModal";
 
 const Banner = () => {
   const { push, isReady, query } = useRouter();
@@ -39,7 +38,7 @@ const Banner = () => {
       switch (columnKey) {
         case "image":
           return (
-            <Image src={`${cellValue}`} alt="icon" width={300} height={200} />
+            <Image className="rounded-lg" src={`${cellValue}`} alt="icon" width={300} height={200} />
           );
         case "isShow":
           return (
@@ -82,11 +81,11 @@ const Banner = () => {
           totalPages={dataBanner?.pagination.totalPages}
         />
       )}
-      {/* <AddCategoryModal
+      <AddBannerModal
         {...addBannerModal}
-        refetchCategory={refetchBanner}
+        refetchBanner={refetchBanner}
       />
-      <DeleteCategoryModal
+      {/* <DeleteCategoryModal
         {...deleteBannerModal}
         selectedId={selectedId}
         setSelectedId={setSelectedId}

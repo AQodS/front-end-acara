@@ -1,3 +1,3 @@
-import AddCategoryModal from "./AddCategoryModal";
+import AddBannerModal from "./AddBannerModal";
 
-export default AddCategoryModal;
+export default AddBannerModal;
