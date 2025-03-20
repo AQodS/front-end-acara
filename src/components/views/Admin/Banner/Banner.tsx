@@ -58,7 +58,9 @@ const Banner = () => {
                 setSelectedId(`${banner._id}`);
                 deleteBannerModal.onOpen();
               }}
-              onPressButtonDetail={() => push(`/admin/banners/${banner._id}`)}
+              onPressButtonDetail={() => {
+                push(`/admin/banner/${banner._id}`)
+              }}
             />
           );
         default:
