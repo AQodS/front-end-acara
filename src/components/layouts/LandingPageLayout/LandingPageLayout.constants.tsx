@@ -1,3 +1,11 @@
+import {
+  FaFacebook,
+  FaInstagram,
+  FaTiktok,
+  FaTwitter,
+  FaYoutube,
+} from "react-icons/fa6";
+
 const NAV_ITEMS = [
   {
     label: "Home",
@@ -22,4 +30,32 @@ const BUTTON_ITEMS = [
   },
 ];
 
-export { NAV_ITEMS, BUTTON_ITEMS };
+const SOCIAL_ITEMS = [
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/",
+    icon: <FaFacebook />,
+  },
+  {
+    label: "Instagram",
+    href: "https://www.Instagram.com/",
+    icon: <FaInstagram />,
+  },
+  {
+    label: "TikTok",
+    href: "https://www.tiktok.com/",
+    icon: <FaTiktok />,
+  },
+  {
+    label: "Twitter",
+    href: "https://www.twitter.com/",
+    icon: <FaTwitter />,
+  },
+  {
+    label: "YouTube",
+    href: "https://www.youtube.com/",
+    icon: <FaYoutube />,
+  },
+];
+
+export { NAV_ITEMS, BUTTON_ITEMS, SOCIAL_ITEMS };
