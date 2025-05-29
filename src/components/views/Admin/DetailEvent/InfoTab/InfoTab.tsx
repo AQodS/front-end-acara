@@ -140,8 +140,8 @@ const InfoTab = (props: PropTypes) => {
               name="startDate"
               render={({ field }) => (
                 <DatePicker
-                  {...field}
-                  defaultValue={toInputDate(`${dataEvent?.startDate}`)}
+                  // {...field}
+                  // defaultValue={toInputDate(`${dataEvent?.startDate}`)}
                   errorMessage={errorsUpdateInfo.startDate?.message}
                   hideTimeZone
                   isInvalid={errorsUpdateInfo.startDate !== undefined}
@@ -159,8 +159,8 @@ const InfoTab = (props: PropTypes) => {
               name="endDate"
               render={({ field }) => (
                 <DatePicker
-                  {...field}
-                  defaultValue={toInputDate(`${dataEvent?.endDate}`)}
+                  // {...field}
+                  // defaultValue={toInputDate(`${dataEvent?.endDate}`)}
                   errorMessage={errorsUpdateInfo.startDate?.message}
                   hideTimeZone
                   isInvalid={errorsUpdateInfo.startDate !== undefined}
