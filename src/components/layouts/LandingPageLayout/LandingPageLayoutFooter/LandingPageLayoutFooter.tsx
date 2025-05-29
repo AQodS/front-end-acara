@@ -29,7 +29,7 @@ const LandingPageLayoutFooter = () => {
       </div>
 
       <div className="mb-10 flex flex-col gap-2 lg:mb-0">
-        <h4 className="text-xl text-white lg:mb-2">Menu</h4>
+        <h4 className="text-xl text-white">Menu</h4>
         {NAV_ITEMS.map((item) => (
           <Link
             key={`footer-nav-${item.label}`}
@@ -41,8 +41,8 @@ const LandingPageLayoutFooter = () => {
         ))}
       </div>
 
-      <div className="flex flex-col items-center gap-8">
-        <div className="item-center flex justify-between gap-8 text-gray-600">
+      <div className="flex flex-col items-center gap-4">
+        <div className="item-center flex justify-between gap-4 text-gray-600">
           {SOCIAL_ITEMS.map((item) => (
             <Link
               key={`footer-social-${item.label}`}
