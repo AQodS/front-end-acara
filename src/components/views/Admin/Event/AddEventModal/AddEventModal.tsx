@@ -20,6 +20,7 @@ import InputFile from "@/components/ui/InputFile";
 import { useEffect } from "react";
 import { ICategory } from "@/types/Category";
 import { IRegency } from "@/types/Event";
+import { getLocalTimeZone, now } from "@internationalized/date";
 
 interface PropTypes {
   isOpen: boolean;
@@ -37,6 +38,7 @@ const AddEventModal = (props: PropTypes) => {
     handleSubmitForm,
     isPendingMutateAddEvent,
     isSuccessMutateAddEvent,
+    setValue,
 
     handleDeleteBanner,
     handleOnClose,
@@ -62,6 +64,11 @@ const AddEventModal = (props: PropTypes) => {
     isPendingMutateAddEvent ||
     isPendingMutateDeleteFile ||
     isPendingMutateUploadFile;
+
+  useEffect(() => {
+    setValue("startDate", now(getLocalTimeZone()));
+    setValue("endDate", now(getLocalTimeZone()));
+  }, [onOpenChange]);
 
   return (
     <Modal
@@ -136,8 +143,8 @@ const AddEventModal = (props: PropTypes) => {
                       errorMessage={errors.startDate?.message}
                       hideTimeZone
                       isInvalid={errors.startDate !== undefined}
-                      label="Start Date"
                       showMonthAndYearPickers
+                      label="Start Date"
                       variant="bordered"
                     />
                   )}
@@ -201,6 +208,22 @@ const AddEventModal = (props: PropTypes) => {
                 />
                 <Controller
                   control={control}
+                  name="description"
+                  render={({ field }) => (
+                    <Textarea
+                      {...field}
+                      errorMessage={errors.description?.message}
+                      isInvalid={errors.description !== undefined}
+                      label="Description"
+                      variant="bordered"
+                    />
+                  )}
+                />
+              </div>
+              <p className="text-sm font-bold">Location</p>
+              <div className="mb-4 flex flex-col gap-4">
+                <Controller
+                  control={control}
                   name="isOnline"
                   render={({ field }) => (
                     <Select
@@ -220,22 +243,6 @@ const AddEventModal = (props: PropTypes) => {
                     </Select>
                   )}
                 />
-                <Controller
-                  control={control}
-                  name="description"
-                  render={({ field }) => (
-                    <Textarea
-                      {...field}
-                      errorMessage={errors.description?.message}
-                      isInvalid={errors.description !== undefined}
-                      label="Description"
-                      variant="bordered"
-                    />
-                  )}
-                />
-              </div>
-              <p className="text-sm font-bold">Location</p>
-              <div className="mb-4 flex flex-col gap-4">
                 <Controller
                   control={control}
                   name="region"
