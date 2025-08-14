@@ -1,5 +1,5 @@
 import { Skeleton } from "@nextui-org/react";
-import HomeList from "./HomeList";
+import HomeEventList from "./HomeEventList";
 import HomeSlider from "./HomeSlider";
 import useHome from "./useHome";
 import Image from "next/image";
@@ -20,7 +20,7 @@ const Home = () => {
         banners={dataBanners?.data}
         isLoadingBanners={isLoadingBanners}
       />
-      <HomeList
+      <HomeEventList
         title="Featured Events"
         events={dataFeaturedEvents?.data}
         isLoading={isLoadingFeaturedEvents}
@@ -37,7 +37,7 @@ const Home = () => {
           height={1080}
         />
       </Skeleton>
-      <HomeList
+      <HomeEventList
         title="Latest Events"
         events={dataLatestEvents?.data}
         isLoading={isLoadingLatestEvents}
