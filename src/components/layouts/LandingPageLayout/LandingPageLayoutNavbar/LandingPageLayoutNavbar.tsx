@@ -88,7 +88,7 @@ const LandingPageLayoutNavbar = () => {
             >
               {!isLoadingEventsSearch && !isRefetchingEventsSearch ? (
                 (item: IEvent) => (
-                  <ListboxItem key={item._id} href={`/events/${item.slug}`}>
+                  <ListboxItem key={item._id} href={`/event/${item.slug}`}>
                     <div className="flex items-center gap-2">
                       <Image
                         src={`${item.banner}`}
