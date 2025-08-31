@@ -12,6 +12,8 @@ import Image from "next/image";
 import { ITicket } from "@/types/Ticket";
 import DetailEventTicket from "./DetailEventTicket";
 import DetailEventCart from "./DetailEventCart";
+import Script from "next/script";
+import environment from "@/config/environment";
 
 const DetailEvent = () => {
   const {
@@ -21,9 +23,16 @@ const DetailEvent = () => {
     cart,
     handleAddToCart,
     handleChangeQuantity,
+    mutateCreateOrder,
+    isPendingCreateOrder,
   } = useDetailEvent();
   return (
     <div className="px-8 md:px-0">
+      <Script
+        src={environment.MIDTRANS_SNAP_URL}
+        data-client-key={environment.MIDTRANS_CLIENT_KEY}
+        strategy="lazyOnload"
+      />
       <Skeleton isLoaded={!!dataEvent?.name} className="h-6 w-1/4 rounded-lg">
         <Breadcrumbs>
           <BreadcrumbItem href="/">Home</BreadcrumbItem>
@@ -44,7 +53,7 @@ const DetailEvent = () => {
           </Skeleton>
           <Skeleton
             isLoaded={!!dataEvent?.startDate || !!dataEvent?.endDate}
-            className="mb-2 h-6 w-1/2 rounded-lg"
+            className="mb-6 sm:mb-4 md:mb-2 h-6 w-3/4 rounded-lg"
           >
             <div className="flex items-center gap-2 text-foreground-500">
               <FaClock width={16} />
@@ -114,6 +123,8 @@ const DetailEvent = () => {
             cart={cart}
             dataTicketInCart={dataTicketInCart}
             onChangeQuantity={handleChangeQuantity}
+            onCreateOrder={mutateCreateOrder}
+            isLoading={isPendingCreateOrder}
           />
         </div>
       </section>
