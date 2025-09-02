@@ -1,14 +1,20 @@
 import { Button } from "@nextui-org/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import usePayment from "./usePayment";
+import { useEffect } from "react";
 
-interface PropTypes {
-  status: "success" | "failed";
-}
-
-const Activation = (props: PropTypes) => {
+const Payment = () => {
   const router = useRouter();
-  const { status } = props;
+  const { status, order_id } = router.query;
+  const { mutateUpdateOrderStatus } = usePayment();
+
+  useEffect(() => {
+    if (router.isReady) {
+      mutateUpdateOrderStatus();
+    }
+  }, [router.isReady]);
+
   return (
     <div className="flex w-screen flex-col items-center justify-center gap-10 p-4">
       <div className="flex flex-col items-center justify-center gap-10">
@@ -32,24 +38,19 @@ const Activation = (props: PropTypes) => {
 
       <div className="flex flex-col items-center gap-2 text-center">
         <h1 className="text-3xl font-bold capitalize text-danger-500">
-          {status === "success" ? "Activation Success" : "Activation Failed"}
+          Transaction {status}
         </h1>
-        <p className="text-xl font-bold text-default-500">
-          {status === "success"
-            ? "Thank you for register in Acara"
-            : "Confirmation code is invalid"}
-        </p>
         <Button
           className="mt-4 w-fit"
           variant="bordered"
           color="danger"
-          onPress={() => router.push("/")}
+          onPress={() => router.push(`/member/transaction/${order_id}`)}
         >
-          Back To Home
+          Check your transaction here
         </Button>
       </div>
     </div>
   );
 };
 
-export default Activation;
+export default Payment;

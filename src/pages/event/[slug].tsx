@@ -3,7 +3,7 @@ import DetailEvent from "@/components/views/DetailEvent";
 
 const DetailEventPage = () => {
   return (
-    <LandingPageLayout title="DetailEvent">
+    <LandingPageLayout title="Detail Event">
       <DetailEvent />
     </LandingPageLayout>
   );
