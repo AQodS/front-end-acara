@@ -3,7 +3,7 @@ import Payment from "@/components/views/Payment";
 
 const PaymentPage = () => {
   return (
-    <AuthLayout title="Acara | Activation">
+    <AuthLayout title="Acara | Payment">
       <Payment />
     </AuthLayout>
   );
